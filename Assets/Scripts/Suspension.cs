@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Suspension : MonoBehaviour
 {
+    public enum SuspensionLocation
+    {
+        FRONTLEFT, FRONTRIGHT, BACKLEFT, BACKRIGHT
+    }
+
+    public SuspensionLocation wheelLocation;
+
     [SerializeField, Header("Suspension")]
     float restLength;
     [SerializeField]
@@ -21,12 +28,19 @@ public class Suspension : MonoBehaviour
     float springForce;
     float dampingForce;
 
+
+
     Vector3 suspensionForce;
+    Vector3 wheelVelocity;
+    float forceX;
+    float forceY;
 
     [SerializeField, Header("Wheel")]
     float wheelRadius;
-    
+    public float steerAngle;
+    public float steerTime;
 
+    private float wheelAngle;
 
     GameObject car;
     Rigidbody rb;
@@ -40,6 +54,15 @@ public class Suspension : MonoBehaviour
         minLength = restLength - springTravel;
         maxLength = restLength + springTravel;
     }
+
+    private void Update()
+    {
+        wheelAngle = Mathf.Lerp(wheelAngle, steerAngle, steerTime * Time.deltaTime);
+        transform.localRotation = Quaternion.Euler(Vector3.up * wheelAngle);
+
+        Debug.DrawRay(transform.position, -transform.up * (springLength + wheelRadius), Color.green);
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -56,7 +79,14 @@ public class Suspension : MonoBehaviour
 
             suspensionForce = (springForce + dampingForce) * transform.up;
 
-            rb.AddForceAtPosition(suspensionForce, hit.point);
+            wheelVelocity = transform.InverseTransformDirection(rb.GetPointVelocity(hit.point));
+            forceX = Input.GetAxis("Vertical") * 0.5f * springForce;
+            forceY = wheelVelocity.x * springForce;
+
+
+            rb.AddForceAtPosition(suspensionForce + (forceX * transform.forward) + (forceY * -transform.right), hit.point);
         }
     }
+
+
 }

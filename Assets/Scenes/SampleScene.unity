@@ -256,11 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf1fd41e457ce84ab4f3565e5061043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wheelLocation: 1
   restLength: 0.2
   springTravel: 0.2
   springStiffness: 25
   dampingStiffness: 2
   wheelRadius: 0.2
+  steerAngle: 0
+  steerTime: 8
 --- !u!1 &812717628
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +275,7 @@ GameObject:
   - component: {fileID: 812717633}
   - component: {fileID: 812717632}
   - component: {fileID: 812717631}
+  - component: {fileID: 812717634}
   - component: {fileID: 812717630}
   - component: {fileID: 812717629}
   m_Layer: 0
@@ -375,6 +379,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812717634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812717628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcd3d933d0fda24a9cb61439f156bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suspensionPoints:
+  - {fileID: 1391574640}
+  - {fileID: 724048884}
+  - {fileID: 1443063936}
+  - {fileID: 1077678012}
+  wheelBase: 2
+  rearTrack: 2
+  turnRadius: 4
+  steerInput: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,11 +526,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf1fd41e457ce84ab4f3565e5061043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wheelLocation: 3
   restLength: 0.2
   springTravel: 0.2
   springStiffness: 25
   dampingStiffness: 2
   wheelRadius: 0.2
+  steerAngle: 0
+  steerTime: 0
 --- !u!1 &1186273071
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,11 +670,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf1fd41e457ce84ab4f3565e5061043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wheelLocation: 0
   restLength: 0.2
   springTravel: 0.2
   springStiffness: 25
   dampingStiffness: 2
   wheelRadius: 0.2
+  steerAngle: 0
+  steerTime: 8
 --- !u!1 &1443063934
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,8 +721,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf1fd41e457ce84ab4f3565e5061043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wheelLocation: 2
   restLength: 0.2
   springTravel: 0.2
   springStiffness: 25
   dampingStiffness: 2
   wheelRadius: 0.2
+  steerAngle: 0
+  steerTime: 0
